@@ -33,3 +33,17 @@ captures/
 
 # IntelliJ Folders
 .idea/
+
+# Custom Extensions
+*.pdf
+*.aux
+*.log
+*.out
+*.gz
+*.dvi
+*.exe
+*.apk
+*.toc
+*.idx
+*.iml
+local.properties
