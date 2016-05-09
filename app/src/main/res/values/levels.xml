@@ -3,6 +3,7 @@
     <string name="noLevel">No Level</string>
     <string name="levelMax">Coffee God</string>
     <string-array name="levels">
+        <item>Level 0</item>
         <item>Level 1</item>
         <item>Level 2</item>
         <item>Level 3</item>

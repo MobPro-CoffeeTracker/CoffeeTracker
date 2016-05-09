@@ -123,7 +123,7 @@ public class PlayerService extends Service implements IPlayerExperience, IPlayer
         public String getLevelDescription(int level) {
             String[] levels = getResources().getStringArray(R.array.levels);
             try {
-                return levels[level - 1];
+                return levels[level];
             } catch (Exception err) {
                 return getUnknownLevelDescription();
             }
