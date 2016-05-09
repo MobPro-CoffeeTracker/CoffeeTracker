@@ -19,6 +19,4 @@ public interface IPlayerExperience {
      * @return Experience
      */
     int getCurrentExp();
-
-
 }

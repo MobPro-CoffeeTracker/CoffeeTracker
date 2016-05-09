@@ -6,16 +6,21 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import ch.hslu.mobpro.coffeetracker.R;
 import ch.hslu.mobpro.coffeetracker.player.storage.IExperienceStorage;
+import ch.hslu.mobpro.coffeetracker.player.storage.ILevelStorage;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.log;
 
 public class PlayerService extends Service implements IPlayerExperience, IPlayerLevel {
 
     private final IBinder experienceBinder = new ExperienceBinder();
     private final IBinder levelBinder = new LevelBinder();
+    private final static int MAX_LEVEL = 10;
 
-    private IExperienceStorage storage = new Storage();
+    private IExperienceStorage experienceStorage = new Storage();
+    private ILevelStorage levelStorage = (ILevelStorage) experienceStorage;
 
     @Nullable
     @Override
@@ -31,29 +36,41 @@ public class PlayerService extends Service implements IPlayerExperience, IPlayer
 
     @Override
     public void clearExp() {
-        storage.save(0);
+        experienceStorage.save(0);
     }
 
 
     @Override
     public void addExp(int exp) {
-        int experience = abs(exp) + storage.getExperience();
-        storage.save(experience);
+        int experience = abs(exp) + experienceStorage.getExperience();
+        experienceStorage.save(experience);
     }
 
     @Override
     public int getCurrentExp() {
-        return storage.getExperience();
+        return experienceStorage.getExperience();
     }
 
     @Override
     public int getLevel() {
-        return 0;
+        double value = experienceStorage.getExperience() / 100;
+        if (value < 1) {
+            return 1;
+        } else {
+            return (int) Math.ceil(log(value) / log(2) + 2);
+        }
     }
 
     @Override
     public String getLevelDescription() {
-        return null;
+        int level = getLevel();
+        if (level < 1) {
+            return levelStorage.getUnknownLevelDescription();
+        } else if (level >= MAX_LEVEL) {
+            return levelStorage.getMaxLevelDescription();
+        } else {
+            return levelStorage.getLevelDescription(level);
+        }
     }
 
     @Override
@@ -78,7 +95,7 @@ public class PlayerService extends Service implements IPlayerExperience, IPlayer
         EXPERIENCE
     }
 
-    private class Storage implements IExperienceStorage {
+    private class Storage implements IExperienceStorage, ILevelStorage {
         private final static String EXPERIENCE = "EXPERIENCE";
         private final static String PLAYER_PREFERENCE = "PLAYER_PREFERENCE";
 
@@ -90,6 +107,26 @@ public class PlayerService extends Service implements IPlayerExperience, IPlayer
         @Override
         public int getExperience() {
             return getSharedPreferences(PLAYER_PREFERENCE, MODE_PRIVATE).getInt(EXPERIENCE, 0);
+        }
+
+        @Override
+        public String getMaxLevelDescription() {
+            return getResources().getString(R.string.levelMax);
+        }
+
+        @Override
+        public String getUnknownLevelDescription() {
+            return getResources().getString(R.string.noLevel);
+        }
+
+        @Override
+        public String getLevelDescription(int level) {
+            String[] levels = getResources().getStringArray(R.array.levels);
+            try {
+                return levels[level - 1];
+            } catch (Exception err) {
+                return getUnknownLevelDescription();
+            }
         }
     }
 }
