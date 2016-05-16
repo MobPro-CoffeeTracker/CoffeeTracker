@@ -1,5 +1,7 @@
 package ch.hslu.mobpro.coffeetracker.player;
 
+import android.test.suitebuilder.annotation.SmallTest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -7,14 +9,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import ch.hslu.mobpro.coffeetracker.player.storage.IExperienceStorage;
-import ch.hslu.mobpro.coffeetracker.player.storage.ILevelStorage;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
 
 @RunWith(MockitoJUnitRunner.class)
-public class PlayerServiceExperienceTest {
+@SmallTest
+public class PlayerExperienceServiceTest {
 
     @Mock
     IExperienceStorage experienceStorage;
@@ -23,7 +22,7 @@ public class PlayerServiceExperienceTest {
     ILevelStorage levelStorage;
 
     @InjectMocks
-    IPlayerExperience testObject = new PlayerService();
+    IPlayerExperience testObject = new PlayerExperienceService();
 
     @Test
     public void testClearExp() throws Exception {
@@ -32,10 +31,26 @@ public class PlayerServiceExperienceTest {
     }
 
     @Test
-    public void testAddExp() throws Exception {
+    public void testAddPositiveExp() throws Exception {
         Mockito.when(experienceStorage.getExperience()).thenReturn(500);
 
         testObject.addExp(500);
+
+        Mockito.verify(experienceStorage, times(1)).save(1000);
+    }
+    @Test
+    public void testAddZeroExp() throws Exception {
+        Mockito.when(experienceStorage.getExperience()).thenReturn(500);
+
+        testObject.addExp(0);
+
+        Mockito.verify(experienceStorage, times(1)).save(500);
+    }
+    @Test
+    public void testAddNegativeExp() throws Exception {
+        Mockito.when(experienceStorage.getExperience()).thenReturn(500);
+
+        testObject.addExp(-500);
 
         Mockito.verify(experienceStorage, times(1)).save(1000);
     }

@@ -1,10 +1,6 @@
 package ch.hslu.mobpro.coffeetracker.player;
 
-import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.SharedPreferences;
-import android.support.annotation.IntegerRes;
-import android.test.AndroidTestCase;
+import android.test.suitebuilder.annotation.SmallTest;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,16 +8,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import ch.hslu.mobpro.coffeetracker.player.storage.IExperienceStorage;
-import ch.hslu.mobpro.coffeetracker.player.storage.ILevelStorage;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -30,25 +21,22 @@ import static org.mockito.Mockito.times;
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class PlayerServiceLevelTest {
+@SmallTest
+public class PlayerLevelServiceTest {
 
     @Mock
-    IExperienceStorage experienceStorage;
+    IPlayerExperience experienceStorage;
 
     @Mock
     ILevelStorage levelStorage;
 
     @InjectMocks
-    IPlayerLevel testObject = new PlayerService();
-
-    @Before
-    public void before() {
-    }
+    IPlayerLevel testObject = new PlayerLevelService();
 
     @Test
     public void testGetLevel() throws Exception {
 
-        Mockito.when(experienceStorage.getExperience()).thenReturn(-1, 0, 1, 99, 100, 101, 199, 200, 400, 800);
+        Mockito.when(experienceStorage.getCurrentExp()).thenReturn(-1, 0, 1, 99, 100, 101, 199, 200, 400, 800);
 
         assertEquals(1, testObject.getLevel()); //-1
         assertEquals(1, testObject.getLevel()); //0
@@ -65,7 +53,7 @@ public class PlayerServiceLevelTest {
 
     @Test
     public void testGetLevelDescription() throws Exception {
-        Mockito.when(experienceStorage.getExperience()).thenReturn(Integer.MIN_VALUE, 0, 400, Integer.MAX_VALUE);
+        Mockito.when(experienceStorage.getCurrentExp()).thenReturn(Integer.MIN_VALUE, 0, 400, Integer.MAX_VALUE);
 
         testObject.getLevelDescription();
         testObject.getLevelDescription();
@@ -75,12 +63,11 @@ public class PlayerServiceLevelTest {
         Mockito.verify(levelStorage, atLeastOnce()).getLevelDescription(anyInt());
         Mockito.verify(levelStorage, times(1)).getMaxLevelDescription();
         Mockito.verify(levelStorage, never()).getUnknownLevelDescription();
-        //Mockito.when(levelStorage.getDescription(0))
     }
 
     @Test
     public void testExpToNextLevel() throws Exception {
-        Mockito.when(experienceStorage.getExperience()).thenReturn(0, 100, 200, 400, 800);
+        Mockito.when(experienceStorage.getCurrentExp()).thenReturn(0, 100, 200, 400, 800);
 
         assertEquals(100, testObject.expToNextLevel()); //0
         assertEquals(200, testObject.expToNextLevel()); //100

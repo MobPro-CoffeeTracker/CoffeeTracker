@@ -3,7 +3,7 @@ package ch.hslu.mobpro.coffeetracker.player;
 
 public interface IPlayerLevel {
     /**
-     * Returns the Level of the PlayerService.
+     * Returns the Level of the PlayerExperienceService.
      *
      * @return Current Level
      */
