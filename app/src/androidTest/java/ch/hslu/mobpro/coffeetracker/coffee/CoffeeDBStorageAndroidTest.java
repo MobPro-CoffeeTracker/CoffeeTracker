@@ -5,7 +5,6 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -25,6 +24,15 @@ public class CoffeeDBStorageAndroidTest {
 
     @Test
     public void testGetAll() {
+        Location location1 = new Location("testDummy");
+        Location location2 = new Location("testDummy");
+
+        coffeeStorage.storeLocation(new Date(), location1);
+        coffeeStorage.storeLocation(new Date(), location2);
+
+        Map<Date, Location> values = coffeeStorage.getAll();
+
+        assertEquals(2, values.size());
     }
 
     @Test

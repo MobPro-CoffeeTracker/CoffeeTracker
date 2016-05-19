@@ -9,5 +9,5 @@ import java.util.Map;
 public interface ICoffeeManager {
     void drink();
     void clearAll();
-    Map<Date, Location> getCoffee(Date start, Date end);
+    Map<Date, Location> getAllCoffee();
 }

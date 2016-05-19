@@ -21,7 +21,7 @@ import static org.junit.Assert.assertNotNull;
 public class PlayerLevelServiceAndroidTest {
 
     private IPlayerLevel service;
-    private static final int MAX_ITERATION = 100;
+    private static final int MAX_ITERATION = 200;
 
     @Rule
     public final ServiceTestRule mLevelService = new ServiceTestRule();

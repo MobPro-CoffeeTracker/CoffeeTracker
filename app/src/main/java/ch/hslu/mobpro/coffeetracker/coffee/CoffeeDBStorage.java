@@ -85,6 +85,8 @@ class CoffeeDBStorage implements ICoffeeStorage {
             cursor.moveToNext();
         }
 
+        cursor.close();
+
         return values;
     }
 

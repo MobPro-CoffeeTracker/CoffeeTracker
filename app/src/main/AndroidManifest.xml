@@ -18,6 +18,8 @@
 
         <service android:name=".player.PlayerExperienceService" />
         <service android:name=".player.PlayerLevelService" />
+        <service android:name=".coffee.CoffeeManager" />
+        <service android:name=".coffee.GPSImplementation" />
     </application>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 </manifest>
