@@ -38,7 +38,7 @@ public class PlayerExperienceService extends Service implements IPlayerExperienc
     }
 
     public class ExperienceBinder extends Binder {
-        IPlayerExperience getService() {
+        public IPlayerExperience getService() {
             return PlayerExperienceService.this;
         }
     }

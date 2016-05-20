@@ -38,6 +38,7 @@ public class CoffeeManager extends Service implements ICoffeeManager {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unbindService(connection);
     }
 
     @Nullable
@@ -62,7 +63,7 @@ public class CoffeeManager extends Service implements ICoffeeManager {
     }
 
     public class ManagerBinder extends Binder {
-        ICoffeeManager getService() {
+        public ICoffeeManager getService() {
             return CoffeeManager.this;
         }
     }
@@ -71,7 +72,6 @@ public class CoffeeManager extends Service implements ICoffeeManager {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-           // GPSImplementation.GPSBinder binder = (PlayerExperienceService.ExperienceBinder) service;
             gps = ((GPSImplementation.GPSBinder)service).getService();
         }
 
