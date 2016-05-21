@@ -15,6 +15,7 @@
         <service android:name=".player.PlayerLevelService" />
         <service android:name=".coffee.CoffeeService" />
         <service android:name=".coffee.GPSImplementation" />
+        <service android:name=".coffee.CoffeeStatisticService" />
 
         <activity
             android:name=".MainActivity"
