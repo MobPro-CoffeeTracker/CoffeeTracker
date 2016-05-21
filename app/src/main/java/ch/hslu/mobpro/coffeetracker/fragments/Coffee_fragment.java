@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import ch.hslu.mobpro.coffeetracker.R;
-import ch.hslu.mobpro.coffeetracker.coffee.CoffeeManager;
+import ch.hslu.mobpro.coffeetracker.coffee.CoffeeService;
 import ch.hslu.mobpro.coffeetracker.coffee.ICoffeeManager;
 import ch.hslu.mobpro.coffeetracker.player.IPlayerExperience;
 import ch.hslu.mobpro.coffeetracker.player.PlayerExperienceService;
@@ -39,7 +39,7 @@ public class Coffee_fragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Intent coffee = new Intent(getActivity(), CoffeeManager.class);
+        Intent coffee = new Intent(getActivity(), CoffeeService.class);
         getActivity().startService(coffee);
         getActivity().bindService(coffee, coffeeConnecter, Context.BIND_AUTO_CREATE);
 
@@ -114,7 +114,7 @@ public class Coffee_fragment extends Fragment {
     private class CoffeeConnecter implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
-            coffeeManager = ((CoffeeManager.ManagerBinder) service).getService();
+            coffeeManager = ((CoffeeService.CoffeeBinder) service).getService();
         }
 
         @Override

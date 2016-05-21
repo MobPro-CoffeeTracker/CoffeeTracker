@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 @SmallTest
-public class CoffeeManagerTest {
+public class CoffeeServiceTest {
 
     @Mock
    ICoffeeStorage storage;
@@ -33,7 +33,7 @@ public class CoffeeManagerTest {
     IGPS gps;
 
     @InjectMocks
-    ICoffeeManager coffeeManager = new CoffeeManager();
+    ICoffeeManager coffeeManager = new CoffeeService();
 
     @Test
     public void testClearAll() throws Exception {

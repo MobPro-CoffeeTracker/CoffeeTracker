@@ -16,7 +16,7 @@ import java.util.concurrent.TimeoutException;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class CoffeeManagerAndroidTest {
+public class CoffeeServiceAndroidTest {
 
     private ICoffeeManager service;
     private static final int MAX_ITERATION = 100;
@@ -25,7 +25,7 @@ public class CoffeeManagerAndroidTest {
     public final ServiceTestRule serviceTestRule = new ServiceTestRule();
 
 
-    public CoffeeManagerAndroidTest() throws TimeoutException {
+    public CoffeeServiceAndroidTest() throws TimeoutException {
 
         //Workaround Issue 180396: 	ServiceTestRule.bindService() returns null on 2nd invocation
         int it = 0;
@@ -33,11 +33,11 @@ public class CoffeeManagerAndroidTest {
 
         while ((binder = serviceTestRule.bindService(
                 new Intent(InstrumentationRegistry.getTargetContext(),
-                        CoffeeManager.class))) == null && it < MAX_ITERATION) {
+                        CoffeeService.class))) == null && it < MAX_ITERATION) {
             it++;
         }
         service =
-                ((CoffeeManager.ManagerBinder) binder).getService();
+                ((CoffeeService.CoffeeBinder) binder).getService();
 
     }
 

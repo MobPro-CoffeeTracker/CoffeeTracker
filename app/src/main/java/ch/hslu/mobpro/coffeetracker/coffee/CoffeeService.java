@@ -13,11 +13,9 @@ import android.support.annotation.Nullable;
 import java.util.Date;
 import java.util.Map;
 
-import ch.hslu.mobpro.coffeetracker.player.PlayerExperienceService;
+public class CoffeeService extends Service implements ICoffeeManager {
 
-public class CoffeeManager extends Service implements ICoffeeManager {
-
-    private final IBinder managerBinder = new ManagerBinder();
+    private final IBinder managerBinder = new CoffeeBinder();
 
     private ICoffeeStorage storage;
 
@@ -62,9 +60,9 @@ public class CoffeeManager extends Service implements ICoffeeManager {
         return storage.getAll();
     }
 
-    public class ManagerBinder extends Binder {
+    public class CoffeeBinder extends Binder {
         public ICoffeeManager getService() {
-            return CoffeeManager.this;
+            return CoffeeService.this;
         }
     }
 
