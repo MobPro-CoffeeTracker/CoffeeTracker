@@ -13,10 +13,10 @@
     tools:showIn="@layout/app_bar_main"
     android:id="@+id/content">
 
-    <fragment android:name="ch.hslu.mobpro.coffeetracker.fragments.Coffee_fragment"
+   <!-- <fragment android:name="ch.hslu.mobpro.coffeetracker.fragments.Coffee_fragment"
         android:id="@+id/coffee_fragment"
         android:layout_height="match_parent"
         tools:layout="@layout/coffee_fragment"
-        android:layout_width="fill_parent" />
+        android:layout_width="fill_parent" />-->
 
 </RelativeLayout>

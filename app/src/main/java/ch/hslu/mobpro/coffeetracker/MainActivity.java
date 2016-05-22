@@ -1,5 +1,6 @@
 package ch.hslu.mobpro.coffeetracker;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -10,14 +11,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Button;
 
 import ch.hslu.mobpro.coffeetracker.fragments.Coffee_fragment;
+import ch.hslu.mobpro.coffeetracker.fragments.Table_fragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Coffee_fragment coffee_fragment = new Coffee_fragment();
+    private Fragment current_selected = new Coffee_fragment();
 
 
     @Override
@@ -35,6 +36,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        current_selected = new Coffee_fragment();
+        fragmentTransaction.add(R.id.content, current_selected);
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -47,7 +54,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
@@ -56,16 +62,20 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        fragmentTransaction.remove(current_selected);
+
         if (id == R.id.nav_start) {
-            fragmentTransaction.add(R.id.content, coffee_fragment);
+            current_selected = new Coffee_fragment();
         } else if (id == R.id.nav_map) {
+            current_selected = new Coffee_fragment();
         } else if (id == R.id.nav_table) {
+            current_selected = new Table_fragment();
         } else if (id == R.id.nav_settings) {
+            current_selected = new Coffee_fragment();
         } else if (id == R.id.nav_statistic) {
-        } else if (id == R.id.nav_drink) {
-            Button button = (Button)findViewById(R.id.drink_coffee);
-            button.performClick();
+            current_selected = new Coffee_fragment();
         }
+        fragmentTransaction.add(R.id.content, current_selected);
         fragmentTransaction.commit();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
