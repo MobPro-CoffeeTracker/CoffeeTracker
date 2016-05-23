@@ -12,13 +12,6 @@
         android:layout_centerHorizontal="true"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/load_coffee"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Load"
-            android:onClick=""/>
-
         <ExpandableListView
             android:id="@+id/coffee_list_view"
             android:layout_width="match_parent"

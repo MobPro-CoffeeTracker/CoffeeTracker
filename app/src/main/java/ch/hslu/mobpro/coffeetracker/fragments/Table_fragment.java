@@ -12,7 +12,6 @@ import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import java.text.DateFormat;
@@ -65,18 +64,8 @@ public class Table_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         listAdapter = new ExpandableListAdapter(getContext(), listDataHeader, listDataChild);
-        View view = inflater.inflate(R.layout.table_fragment, container, false);
 
-        Button load = (Button) view.findViewById(R.id.load_coffee);
-        load.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                prepareListData();
-                listAdapter.notifyDataSetChanged();
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.table_fragment, container, false);
     }
 
     @Override
@@ -115,6 +104,8 @@ public class Table_fragment extends Fragment {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             coffeeManager = ((CoffeeService.CoffeeBinder) service).getService();
+            prepareListData();
+            listAdapter.notifyDataSetChanged();
         }
 
         @Override
