@@ -41,23 +41,23 @@ public class CoffeeDBStorageAndroidTest {
         Thread.sleep(100);
         Date date2 = new Date();
         Location location1 = new Location("testDummy");
-        location1.setLongitude(1.0);
-        location1.setLatitude(1.0);
+        location1.setLongitude(1.01);
+        location1.setLatitude(1.01);
 
         Location location2 = new Location("testDummy");
-        location2.setLongitude(2.0);
-        location2.setLatitude(2.0);
+        location2.setLongitude(2.003);
+        location2.setLatitude(2.003);
 
         coffeeStorage.storeLocation(date1, location1);
         coffeeStorage.storeLocation(date2, location2);
 
         Map<Date, Location> values = coffeeStorage.getAll();
 
-        assertEquals(location2.getLatitude(), values.get(date2).getLatitude(), 0);
-        assertEquals(location2.getLongitude(), values.get(date2).getLongitude(), 0);
+        assertEquals(location2.getLatitude(), values.get(date2).getLatitude(), 0.000001);
+        assertEquals(location2.getLongitude(), values.get(date2).getLongitude(), 0.000001);
 
-        assertEquals(location1.getLatitude(), values.get(date1).getLatitude(), 0);
-        assertEquals(location1.getLongitude(), values.get(date1).getLongitude(), 0);
+        assertEquals(location1.getLatitude(), values.get(date1).getLatitude(), 0.000001);
+        assertEquals(location1.getLongitude(), values.get(date1).getLongitude(), 0.000001);
     }
 
     @Test

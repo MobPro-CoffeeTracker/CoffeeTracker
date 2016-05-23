@@ -30,6 +30,7 @@ class CoffeeDBStorage implements ICoffeeStorage {
         values.put(CoffeeEntry.COLUMN_NAME_DATE, parserSDF.format(timestamp));
         values.put(CoffeeEntry.COLUMN_NAME_LATITUDE, location.getLatitude());
         values.put(CoffeeEntry.COLUMN_NAME_LONGITUDE, location.getLongitude());
+        Log.i("Coffee Stored", location.toString());
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
         newRowId = database.insert(
@@ -72,9 +73,10 @@ class CoffeeDBStorage implements ICoffeeStorage {
         while (!cursor.isAfterLast()) {
             try {
                 Location location = new Location("CoffeeDBStorage");
-                location.setLatitude(cursor.getLong(cursor.getColumnIndex(CoffeeEntry.COLUMN_NAME_LATITUDE)));
-                location.setLongitude(cursor.getLong(cursor.getColumnIndex(CoffeeEntry.COLUMN_NAME_LONGITUDE)));
+                location.setLatitude(cursor.getDouble(cursor.getColumnIndex(CoffeeEntry.COLUMN_NAME_LATITUDE)));
+                location.setLongitude(cursor.getDouble(cursor.getColumnIndex(CoffeeEntry.COLUMN_NAME_LONGITUDE)));
 
+                Log.i("Coffee loaded", location.toString());
                 values.put(parserSDF.parse(
                         cursor.getString(cursor.getColumnIndex(CoffeeEntry.COLUMN_NAME_DATE))),
                         location);

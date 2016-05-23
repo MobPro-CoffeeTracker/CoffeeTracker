@@ -12,6 +12,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 
 public class GPSImplementation extends Service implements IGPS {
@@ -66,6 +67,7 @@ public class GPSImplementation extends Service implements IGPS {
         public void onLocationChanged(Location location) {
             if (LocationOptimizer.isBetterLocation(location, lastLocation)) {
                 lastLocation = location;
+                Log.i("Location Changed", location.toString());
             }
         }
 

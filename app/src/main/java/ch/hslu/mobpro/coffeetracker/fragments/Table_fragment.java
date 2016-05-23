@@ -81,7 +81,7 @@ public class Table_fragment extends Fragment {
 
         HashMap<String, List<String>> map = new HashMap<>();
         DateFormat headerFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat entryFormatter = new SimpleDateFormat("hh:mm:ss");
+        DateFormat entryFormatter = new SimpleDateFormat("HH:mm:ss");
 
         Iterator it = coffee.keySet().iterator();
         while (it.hasNext()) {
@@ -92,7 +92,7 @@ public class Table_fragment extends Fragment {
             if (!map.containsKey(key)) {
                 map.put(key, new LinkedList<String>());
             }
-            String string = entryFormatter.format(date) + ": " + coffee.get(date).getLongitude() + "°N /" + coffee.get(date).getLatitude() + "°E";
+            String string = entryFormatter.format(date) + ": " + coffee.get(date).getLatitude() + "°N /" + coffee.get(date).getLongitude() + "°E";
             map.get(key).add(string);
         }
 

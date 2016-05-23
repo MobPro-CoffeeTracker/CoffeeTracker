@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import ch.hslu.mobpro.coffeetracker.R;
 import ch.hslu.mobpro.coffeetracker.coffee.CoffeeService;
+import ch.hslu.mobpro.coffeetracker.coffee.CoffeeStatisticService;
 import ch.hslu.mobpro.coffeetracker.coffee.ICoffeeManager;
 import ch.hslu.mobpro.coffeetracker.player.IPlayerExperience;
 import ch.hslu.mobpro.coffeetracker.player.PlayerExperienceService;

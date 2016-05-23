@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import ch.hslu.mobpro.coffeetracker.fragments.Coffee_fragment;
+import ch.hslu.mobpro.coffeetracker.fragments.Maps_fragment;
 import ch.hslu.mobpro.coffeetracker.fragments.Settings_fragment;
 import ch.hslu.mobpro.coffeetracker.fragments.Statistic_fragment;
 import ch.hslu.mobpro.coffeetracker.fragments.Table_fragment;
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_start) {
             current_selected = new Coffee_fragment();
         } else if (id == R.id.nav_map) {
-            current_selected = new Coffee_fragment();
+            current_selected = new Maps_fragment();
         } else if (id == R.id.nav_table) {
             current_selected = new Table_fragment();
         } else if (id == R.id.nav_settings) {

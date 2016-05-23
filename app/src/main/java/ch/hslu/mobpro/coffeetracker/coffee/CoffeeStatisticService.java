@@ -59,7 +59,7 @@ public class CoffeeStatisticService extends Service implements ICoffeeStatistic 
     public Location favoriteSpot() {
         Iterator iterator = coffeeService.getAllCoffee().values().iterator();
         Map<Location, Integer> map = new HashMap<>();
-        int scale = 2;
+        int scale = 3;
 
         int max = 0;
         Location favorite = new Location("emptyList");

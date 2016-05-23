@@ -122,6 +122,6 @@ public class Statistic_fragment extends Fragment {
 
         TextView favorite_spot = (TextView) getActivity().findViewById(R.id.favorite_spot);
         Location location = coffeeStatistic.favoriteSpot();
-        favorite_spot.setText("Favorite Spot: " + location.getLongitude() + "°N / " + location.getLatitude() + "°E");
+        favorite_spot.setText("Favorite Spot: " + location.getLatitude() + "°N / " + location.getLongitude() + "°E");
     }
 }
