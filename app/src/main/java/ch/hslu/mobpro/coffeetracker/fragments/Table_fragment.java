@@ -80,17 +80,20 @@ public class Table_fragment extends Fragment {
         Map<Date, Location> coffee = coffeeManager.getAllCoffee();
 
         HashMap<String, List<String>> map = new HashMap<>();
+        DateFormat headerFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat entryFormatter = new SimpleDateFormat("hh:mm:ss");
 
         Iterator it = coffee.keySet().iterator();
         while (it.hasNext()) {
             Date date = (Date) it.next();
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            String key = formatter.format(date);
+
+            String key = headerFormatter.format(date);
 
             if (!map.containsKey(key)) {
                 map.put(key, new LinkedList<String>());
             }
-            map.get(key).add(coffee.get(date).toString());
+            String string = entryFormatter.format(date) + ": " + coffee.get(date).getLongitude() + "°N /" + coffee.get(date).getLatitude() + "°E";
+            map.get(key).add(string);
         }
 
         listDataHeader.clear();

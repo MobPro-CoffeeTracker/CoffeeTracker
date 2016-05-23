@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -105,8 +106,7 @@ public class Statistic_fragment extends Fragment {
         }
     }
 
-    private void updateStatistic()
-    {
+    private void updateStatistic() {
         TextView level = (TextView) getActivity().findViewById(R.id.level_stat);
         level.setText("Level " + playerLevel.getLevel() + " : " + playerLevel.getLevelDescription());
 
@@ -121,6 +121,7 @@ public class Statistic_fragment extends Fragment {
         coffee_per_hour.setText("Coffee per hour: " + coffeeStatistic.coffeePerHour());
 
         TextView favorite_spot = (TextView) getActivity().findViewById(R.id.favorite_spot);
-        favorite_spot.setText("Favorite Spot: " + coffeeStatistic.favoriteSpot());
+        Location location = coffeeStatistic.favoriteSpot();
+        favorite_spot.setText("Favorite Spot: " + location.getLongitude() + "°N / " + location.getLatitude() + "°E");
     }
 }
