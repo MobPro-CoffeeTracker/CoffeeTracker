@@ -36,7 +36,7 @@ public class PlayerLevelServiceTest {
     @Test
     public void testGetLevel() throws Exception {
 
-        Mockito.when(experienceStorage.getCurrentExp()).thenReturn(-1, 0, 1, 99, 100, 101, 199, 200, 400, 800);
+        Mockito.when(experienceStorage.getCurrentExp()).thenReturn(-1, 0, 1, 99, 100, 101, 199, 200, 400, 800, 1600, 3200, 6399, 6400, 12800);
 
         assertEquals(1, testObject.getLevel()); //-1
         assertEquals(1, testObject.getLevel()); //0
@@ -48,6 +48,10 @@ public class PlayerLevelServiceTest {
         assertEquals(3, testObject.getLevel()); //200
         assertEquals(4, testObject.getLevel()); //400
         assertEquals(5, testObject.getLevel()); //800
+        assertEquals(6, testObject.getLevel()); //1600
+        assertEquals(7, testObject.getLevel()); //3200
+        assertEquals(7, testObject.getLevel()); //6399
+        assertEquals(8, testObject.getLevel()); //6400
     }
 
 

@@ -39,7 +39,7 @@ public class PlayerLevelService extends Service implements IPlayerLevel {
         if (value < 1) {
             return 1;
         } else {
-            return (int) Math.ceil(log(value) / log(2) + 2);
+            return (int) Math.floor(log(value) / log(2) + 2);
         }
     }
 
