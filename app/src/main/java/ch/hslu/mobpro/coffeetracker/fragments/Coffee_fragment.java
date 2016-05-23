@@ -29,8 +29,8 @@ public class Coffee_fragment extends Fragment {
     private ICoffeeManager coffeeManager;
     private IPlayerExperience playerExperience;
 
-    private ExperienceConnecter experienceConnecter = new ExperienceConnecter();
-    private CoffeeConnecter coffeeConnecter = new CoffeeConnecter();
+    private ExperienceConnector experienceConnector = new ExperienceConnector();
+    private CoffeeConnector coffeeConnector = new CoffeeConnector();
 
     public Coffee_fragment() {
         // Required empty public constructor
@@ -41,11 +41,11 @@ public class Coffee_fragment extends Fragment {
         super.onCreate(savedInstanceState);
         Intent coffee = new Intent(getActivity(), CoffeeService.class);
         getActivity().startService(coffee);
-        getActivity().bindService(coffee, coffeeConnecter, Context.BIND_AUTO_CREATE);
+        getActivity().bindService(coffee, coffeeConnector, Context.BIND_AUTO_CREATE);
 
         Intent experience = new Intent(getActivity(), PlayerExperienceService.class);
         getActivity().startService(experience);
-        getActivity().bindService(experience, experienceConnecter, Context.BIND_AUTO_CREATE);
+        getActivity().bindService(experience, experienceConnector, Context.BIND_AUTO_CREATE);
     }
 
     @Override
@@ -67,8 +67,8 @@ public class Coffee_fragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        getActivity().unbindService(coffeeConnecter);
-        getActivity().unbindService(experienceConnecter);
+        getActivity().unbindService(coffeeConnector);
+        getActivity().unbindService(experienceConnector);
     }
 
     private void execute_drink() {
@@ -111,7 +111,7 @@ public class Coffee_fragment extends Fragment {
     }
 
 
-    private class CoffeeConnecter implements ServiceConnection {
+    private class CoffeeConnector implements ServiceConnection {
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {
             coffeeManager = ((CoffeeService.CoffeeBinder) service).getService();
@@ -122,7 +122,7 @@ public class Coffee_fragment extends Fragment {
         }
     }
 
-    private class ExperienceConnecter implements ServiceConnection {
+    private class ExperienceConnector implements ServiceConnection {
 
         @Override
         public void onServiceConnected(ComponentName className, IBinder service) {

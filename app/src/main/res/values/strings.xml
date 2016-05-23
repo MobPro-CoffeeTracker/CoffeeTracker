@@ -20,6 +20,14 @@
         <item quantity="other">Locations stored.\n You gained %d experience points.</item>
     </plurals>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="delete_location_button">Delete Locations</string>
+    <string name="delete_experience_button">Delete Experience</string>
+    <string name="delete_everything_button">Delete Everything</string>
+
+    <string name="delete_location_question">All stored location will be erased.\nAre you sure?</string>
+    <string name="delete_experience_question">All your earned experience will be erased.\nAre you sure?</string>
+    <string name="delete_everything_question">Your experience and locations will be erased.\nAre you sure?</string>
 </resources>
