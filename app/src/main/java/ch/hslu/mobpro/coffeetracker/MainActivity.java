@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import ch.hslu.mobpro.coffeetracker.fragments.Coffee_fragment;
 import ch.hslu.mobpro.coffeetracker.fragments.Settings_fragment;
+import ch.hslu.mobpro.coffeetracker.fragments.Statistic_fragment;
 import ch.hslu.mobpro.coffeetracker.fragments.Table_fragment;
 
 public class MainActivity extends AppCompatActivity
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             current_selected = new Settings_fragment();
         } else if (id == R.id.nav_statistic) {
-            current_selected = new Coffee_fragment();
+            current_selected = new Statistic_fragment();
         }
         fragmentTransaction.add(R.id.content, current_selected);
         fragmentTransaction.commit();

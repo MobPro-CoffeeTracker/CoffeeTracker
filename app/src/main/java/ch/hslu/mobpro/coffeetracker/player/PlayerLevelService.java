@@ -61,7 +61,7 @@ public class PlayerLevelService extends Service implements IPlayerLevel {
     }
 
     public class LevelBinder extends Binder {
-        IPlayerLevel getService() {
+        public IPlayerLevel getService() {
             return PlayerLevelService.this;
         }
     }
